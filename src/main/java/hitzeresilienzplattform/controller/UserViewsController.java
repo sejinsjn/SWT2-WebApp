@@ -14,12 +14,16 @@ public class UserViewsController {
 
     private UserService userService;
 
-    @GetMapping("/createUser")
-    public String createUser(Model model) {
-        User user = new User();
-        model.addAttribute("user", user);
+    @GetMapping("/")
+    public String index(Model model) {
 
-        return "create_user";
+        return "index";
+    }
+
+    @GetMapping("/sensorData")
+    public String sensorData(Model model) {
+
+        return "";
     }
 
     @PostMapping("/createUser")
@@ -29,13 +33,6 @@ public class UserViewsController {
         userService.createUser(user);
 
         return "redirect:/";
-    }
-
-    @GetMapping("/")
-    public String showUsers(Model model) {
-        List<User> users = userService.getAllUsers();
-        if (users != null) model.addAttribute("users", users);
-        return "index";
     }
 
     @RequestMapping("/deleteUser/{id}")
