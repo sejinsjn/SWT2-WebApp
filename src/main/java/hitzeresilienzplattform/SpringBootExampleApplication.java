@@ -1,12 +1,15 @@
 package hitzeresilienzplattform;
 
+import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
+import org.eclipse.paho.client.mqttv3.MqttException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class SpringBootExampleApplication {
 
-	public static void main(String[] args) throws MqttException{
+	public static void main(String[] args) throws MqttException {
 		MqttClient client = new MqttClient("tcp://compress.seelab.fh-dortmund.de:1883", MqttClient.generateClientId());
 		MqttConnectOptions opt = new MqttConnectOptions();
 		opt.setUserName("swt2");

@@ -11,7 +11,7 @@ public class Subscriber {
     System.out.println("== START SUBSCRIBER ==");
 
     MqttClient client=new MqttClient("tcp://compress.seelab.fh-dortmund.de:1883", MqttClient.generateClientId());
-    client.setCallback( new SimpleMqttCallBack() );
+    client.setCallback( new MqttDatenAbfrage() );
     MqttConnectOptions opt = new MqttConnectOptions();
     opt.setUserName("swt2");
     opt.setPassword("sose2021".toCharArray());
