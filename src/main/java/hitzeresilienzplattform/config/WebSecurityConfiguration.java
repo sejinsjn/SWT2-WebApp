@@ -1,4 +1,4 @@
-package de.fhdortmund.seelab.springbootexample.config;
+package hitzeresilienzplattform.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

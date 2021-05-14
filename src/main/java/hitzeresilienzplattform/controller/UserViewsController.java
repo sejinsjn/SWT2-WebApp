@@ -1,7 +1,7 @@
-package de.fhdortmund.seelab.springbootexample.controller;
+package hitzeresilienzplattform.controller;
 
-import de.fhdortmund.seelab.springbootexample.entities.User;
-import de.fhdortmund.seelab.springbootexample.services.UserService;
+import hitzeresilienzplattform.entities.User;
+import hitzeresilienzplattform.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,4 +1,4 @@
-package de.fhdortmund.seelab.springbootexample;
+package hitzeresilienzplattform;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

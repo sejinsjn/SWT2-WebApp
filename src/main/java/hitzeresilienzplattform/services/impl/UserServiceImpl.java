@@ -1,8 +1,8 @@
-package de.fhdortmund.seelab.springbootexample.services.impl;
+package hitzeresilienzplattform.services.impl;
 
-import de.fhdortmund.seelab.springbootexample.entities.User;
-import de.fhdortmund.seelab.springbootexample.repositories.UserRepository;
-import de.fhdortmund.seelab.springbootexample.services.UserService;
+import hitzeresilienzplattform.entities.User;
+import hitzeresilienzplattform.repositories.UserRepository;
+import hitzeresilienzplattform.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

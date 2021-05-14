@@ -1,4 +1,4 @@
-package de.fhdortmund.seelab.springbootexample.entities;
+package hitzeresilienzplattform.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -1,6 +1,6 @@
-package de.fhdortmund.seelab.springbootexample.repositories;
+package hitzeresilienzplattform.repositories;
 
-import de.fhdortmund.seelab.springbootexample.entities.User;
+import hitzeresilienzplattform.entities.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

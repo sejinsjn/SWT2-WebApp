@@ -1,6 +1,6 @@
-package de.fhdortmund.seelab.springbootexample.services;
+package hitzeresilienzplattform.services;
 
-import de.fhdortmund.seelab.springbootexample.entities.User;
+import hitzeresilienzplattform.entities.User;
 
 import java.util.List;
 
