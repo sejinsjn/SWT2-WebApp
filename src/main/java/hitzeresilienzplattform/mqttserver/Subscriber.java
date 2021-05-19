@@ -10,9 +10,10 @@ public class Subscriber {
 
     System.out.println("== START SUBSCRIBER ==");
     String topicSWT = "SWT_SMART_CITY_SENSORS";
-    String topicTest = "COMPRESS_TS_DATA";
+    String topicTest = "test01";
     MqttClient client=new MqttClient("tcp://compress.seelab.fh-dortmund.de:1883", MqttClient.generateClientId());
-    client.setCallback( new MessageHandler() );
+    MessageHandler handler = new MessageHandler();
+    client.setCallback( handler );
     MqttConnectOptions opt = new MqttConnectOptions();
     opt.setUserName("swt2");
     opt.setPassword("sose2021".toCharArray());
