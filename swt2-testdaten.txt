@@ -1,72 +1,76 @@
+[
 {
-    "title": "Baum-000",
-    "sensors": [
-        {
-            "name": "niederschlag",
-            "id": "b4724410-29cf-46e6-8f7d-07508c7c025a"
-        },
-        {
-            "name": "helligkeit",
-            "id": "32a50497-ce45-47df-87a8-494773598b37"
-        },
-        {
-            "name": "temperatur",
-            "id": "678ef2cf-a46c-42f3-85dc-65b92c6fc291"
-        },
-        {
-            "name": "bodenFeuchtigkeit",
-            "id": "8f1dc4f5-21bd-49d3-8bbb-9015b04293a4"
-        },
-        {
-            "name": "luftFeuchtigkeit",
-            "id": "39da0032-7262-4d37-bbba-0943c6fcdfa0"
-        }
-    ]
-    ,
-    "title02": "Baum-001",
-    "sensors02": [
-        {
-            "name": "niederschlag",
-            "id": "bda4274f-af4e-4485-b58b-b7f036296d64"
-        },
-        {
-            "name": "helligkeit",
-            "id": "911a4d2d-6729-4a00-9800-96eabbf5099b"
-        },
-        {
-            "name": "temperatur",
-            "id": "0e69a0d6-5445-4371-852d-4677799bcb01"
-        },
-        {
-            "name": "bodenFeuchtigkeit",
-            "id": "6583c19b-15f7-42a9-84a2-cbc7734ca536"
-        },
-        {
-            "name": "luftFeuchtigkeit",
-            "id": "39da0032-7262-4d37-bbba-0943c6fcdfa0"
-        }
-    ],
-    "title03": "Baum-002",
-    "sensors03": [
-        {
-            "name": "niederschlag",
-            "id": "556931c7-cf87-440a-af3f-58a676f70afb"
-        },
-        {
-            "name": "helligkeit",
-            "id": "e749193c-6ecc-443c-a70e-c774d235dea7"
-        },
-        {
-            "name": "temperatur",
-            "id": "dd9655f2-d896-47e5-9a0c-4f75b88e1acd"
-        },
-        {
-            "name": "bodenFeuchtigkeit",
-            "id": "39da0032-7262-4d37-bbba-0943c6fcdfa0"
-        },
-        {
-            "name": "luftFeuchtigkeit",
-            "id": "39da0032-7262-4d37-bbba-0943c6fcdfa0"
-        }
-    ]
+"title": "Baum-000",
+"sensors": [
+{
+"name": "niederschlag",
+"id": "b4724410-29cf-46e6-8f7d-07508c7c025a"
+},
+{
+"name": "helligkeit",
+"id": "32a50497-ce45-47df-87a8-494773598b37"
+},
+{
+"name": "temperatur",
+"id": "678ef2cf-a46c-42f3-85dc-65b92c6fc291"
+},
+{
+"name": "bodenFeuchtigkeit",
+"id": "8f1dc4f5-21bd-49d3-8bbb-9015b04293a4"
+},
+{
+"name": "luftFeuchtigkeit",
+"id": "39da0032-7262-4d37-bbba-0943c6fcdfa0"
 }
+]
+},
+{
+"title": "Baum-001",
+"sensors": [{
+"name": "niederschlag",
+"id": "bda4274f-af4e-4485-b58b-b7f036296d64"
+},
+{
+"name": "helligkeit",
+"id": "911a4d2d-6729-4a00-9800-96eabbf5099b"
+},
+{
+"name": "temperatur",
+"id": "0e69a0d6-5445-4371-852d-4677799bcb01"
+},
+{
+"name": "bodenFeuchtigkeit",
+"id": "6583c19b-15f7-42a9-84a2-cbc7734ca536"
+},
+{
+"name": "luftFeuchtigkeit",
+"id": "39da0032-7262-4d37-bbba-0943c6fcdfa0"
+}
+]
+},
+{
+"title": "Baum-002",
+"sensors": [
+{
+"name": "niederschlag",
+"id": "556931c7-cf87-440a-af3f-58a676f70afb"
+},
+{
+"name": "helligkeit",
+"id": "e749193c-6ecc-443c-a70e-c774d235dea7"
+},
+{
+"name": "temperatur",
+"id": "dd9655f2-d896-47e5-9a0c-4f75b88e1acd"
+},
+{
+"name": "bodenFeuchtigkeit",
+"id": "39da0032-7262-4d37-bbba-0943c6fcdfa0"
+},
+{
+"name": "luftFeuchtigkeit",
+"id": "39da0032-7262-4d37-bbba-0943c6fcdfa0"
+}
+]
+}
+]
