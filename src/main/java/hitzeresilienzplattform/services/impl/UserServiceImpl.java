@@ -1,6 +1,6 @@
 package hitzeresilienzplattform.services.impl;
 
-import hitzeresilienzplattform.entities.User;
+import hitzeresilienzplattform.entities.SensorDaten;
 import hitzeresilienzplattform.repositories.UserRepository;
 import hitzeresilienzplattform.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +14,14 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public List<User> getAllUsers() {
-        List<User> users = new ArrayList<>();
+    public List<SensorDaten> getAllUsers() {
+        List<SensorDaten> users = new ArrayList<>();
         userRepository.findAll().forEach(users::add);
         return users;
     }
 
     @Override
-    public User createUser(User user) {
+    public SensorDaten createUser(SensorDaten user) {
         return userRepository.save(user);
     }
 

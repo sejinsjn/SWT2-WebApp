@@ -1,8 +1,13 @@
 package hitzeresilienzplattform.mqttserver;
 
+import hitzeresilienzplattform.entities.Sensor;
+import hitzeresilienzplattform.entities.SensorItem;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class Subscriber {
 
@@ -10,7 +15,6 @@ public class Subscriber {
 
     System.out.println("== START SUBSCRIBER ==");
     String topicSWT = "SWT_SMART_CITY_SENSORS";
-    String topicTest = "test01";
     MqttClient client=new MqttClient("tcp://compress.seelab.fh-dortmund.de:1883", MqttClient.generateClientId());
     MessageHandler handler = new MessageHandler();
     client.setCallback( handler );
@@ -20,6 +24,8 @@ public class Subscriber {
 
     client.connect(opt);
 
-    client.subscribe(topicTest);
+
+
+    client.subscribe(topicSWT);
   }
 }

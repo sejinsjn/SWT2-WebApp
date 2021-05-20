@@ -1,11 +1,11 @@
 package hitzeresilienzplattform.services;
 
-import hitzeresilienzplattform.entities.User;
+import hitzeresilienzplattform.entities.SensorDaten;
 
 import java.util.List;
 
 public interface UserService {
-    List<User> getAllUsers();
-    User createUser(User user);
+    List<SensorDaten> getAllUsers();
+    SensorDaten createUser(SensorDaten user);
     void deleteUser(long userId);
 }
