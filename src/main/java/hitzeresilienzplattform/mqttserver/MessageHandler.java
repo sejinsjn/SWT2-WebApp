@@ -1,30 +1,34 @@
 package hitzeresilienzplattform.mqttserver;
 
-import com.fasterxml.jackson.core.type.TypeReference;
+import DAL.SensorDAL;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import hitzeresilienzplattform.entities.Sensor;
 import hitzeresilienzplattform.entities.SensorDaten;
 import hitzeresilienzplattform.entities.SensorItem;
+
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
-
-import java.util.LinkedList;
-import java.util.List;
 
 public class MessageHandler implements MqttCallback {
 
     private String json;
     private int counter = 0;
-    private Sensor b000 = new Sensor("Baum-000"), b001 = new Sensor("Baum-001"), b002 = new Sensor("Baum-002");
+    private Sensor b000 = new Sensor(), b001 = new Sensor(), b002 = new Sensor();
+    private SensorDAL sensorDAL;
 
+    public MessageHandler(SensorDAL sensorDAL) {
+        this.sensorDAL = sensorDAL;
+        this.b000.setTitle("Baum-000");
+        this.b001.setTitle("Baum-001");
+        this.b002.setTitle("Baum-002");
+    }
 
     public void connectionLost(Throwable throwable) {
         System.err.println(throwable);
         System.out.println("Connection to MQTT broker lost!");
     }
-
-    public String getJson(){ return this.json; }
 
     public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {this.json = new String(mqttMessage.getPayload());
         SensorDaten daten = new ObjectMapper().readValue(this.json, SensorDaten.class);
@@ -38,8 +42,12 @@ public class MessageHandler implements MqttCallback {
         if(counter > 9)
             addSensorItem(b002, daten, counter);
 
-        if(counter == 14)
+        if(counter == 14){
+            sensorDAL.addNewSensor(b000);
+            sensorDAL.addNewSensor(b001);
+            sensorDAL.addNewSensor(b002);
             System.out.println(b000 + "\n" + b001 + "\n" + b002);
+        }
 
         counter = (counter + 1) % 15;
     }
