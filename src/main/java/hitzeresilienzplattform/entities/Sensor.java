@@ -1,6 +1,6 @@
 package hitzeresilienzplattform.entities;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Document (collection = "Sensor")
-public class Sensor{
+public class Sensor implements Serializable{
 
     @Id
     private String id;

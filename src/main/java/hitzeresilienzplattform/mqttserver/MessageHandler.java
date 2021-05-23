@@ -1,6 +1,5 @@
 package hitzeresilienzplattform.mqttserver;
 
-import DAL.SensorDAL;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import hitzeresilienzplattform.entities.Sensor;
@@ -16,10 +15,8 @@ public class MessageHandler implements MqttCallback {
     private String json;
     private int counter = 0;
     private Sensor b000 = new Sensor(), b001 = new Sensor(), b002 = new Sensor();
-    private SensorDAL sensorDAL;
 
-    public MessageHandler(SensorDAL sensorDAL) {
-        this.sensorDAL = sensorDAL;
+    public MessageHandler() {
         this.b000.setTitle("Baum-000");
         this.b001.setTitle("Baum-001");
         this.b002.setTitle("Baum-002");
@@ -43,9 +40,9 @@ public class MessageHandler implements MqttCallback {
             addSensorItem(b002, daten, counter);
 
         if(counter == 14){
-            sensorDAL.addNewSensor(b000);
-            sensorDAL.addNewSensor(b001);
-            sensorDAL.addNewSensor(b002);
+      //      sensorDAL.addNewSensor(b000);
+        //    sensorDAL.addNewSensor(b001);
+          //  sensorDAL.addNewSensor(b002);
             System.out.println(b000 + "\n" + b001 + "\n" + b002);
         }
 

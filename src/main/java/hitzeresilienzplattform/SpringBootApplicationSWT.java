@@ -1,11 +1,10 @@
 package hitzeresilienzplattform;
 
-import DAL.SensorDAL;
-import DAL.SensorDALImpl;
 import hitzeresilienzplattform.mqttserver.MessageHandler;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
@@ -15,7 +14,7 @@ public class SpringBootApplicationSWT {
 		System.out.println("== START SUBSCRIBER ==");
 		String topicSWT = "SWT_SMART_CITY_SENSORS";
 		MqttClient client=new MqttClient("tcp://compress.seelab.fh-dortmund.de:1883", MqttClient.generateClientId());
-		MessageHandler handler = new MessageHandler(new SensorDALImpl());
+		MessageHandler handler = new MessageHandler();
 		client.setCallback( handler );
 		MqttConnectOptions opt = new MqttConnectOptions();
 		opt.setUserName("swt2");
@@ -24,5 +23,7 @@ public class SpringBootApplicationSWT {
 		client.connect(opt);
 
 		client.subscribe(topicSWT);
+
+		SpringApplication.run(SpringBootApplicationSWT.class, args);
 	}
 }
