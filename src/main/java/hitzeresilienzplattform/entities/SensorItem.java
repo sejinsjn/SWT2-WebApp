@@ -1,26 +1,18 @@
 package hitzeresilienzplattform.entities;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.List;
 
+@Document (collection = "Sensor")
 public class SensorItem {
 
     private String name;
+    @Id
     private String id;
     private String timestamp;
     private double value;
-
-    public SensorItem(String name, String id, String timestamp, double value) {
-        this.name = name;
-        this.id = id;
-        this.timestamp = timestamp;
-        this.value = value;
-    }
-
-    public SensorItem(String id, String timestamp, double value) {
-        this.id = id;
-        this.timestamp = timestamp;
-        this.value = value;
-    }
 
     public String getName() {
         return name;

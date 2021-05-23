@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SpringBootApplicationSWT {
 
 	public static void main(String[] args) throws MqttException {
+
 		System.out.println("== START SUBSCRIBER ==");
 		String topicSWT = "SWT_SMART_CITY_SENSORS";
 		MqttClient client=new MqttClient("tcp://compress.seelab.fh-dortmund.de:1883", MqttClient.generateClientId());

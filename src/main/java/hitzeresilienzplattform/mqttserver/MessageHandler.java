@@ -9,6 +9,9 @@ import hitzeresilienzplattform.entities.SensorItem;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.springframework.web.client.RestTemplate;
+
+import java.net.http.HttpHeaders;
 
 public class MessageHandler implements MqttCallback {
 
@@ -40,9 +43,13 @@ public class MessageHandler implements MqttCallback {
             addSensorItem(b002, daten, counter);
 
         if(counter == 14){
-      //      sensorDAL.addNewSensor(b000);
-        //    sensorDAL.addNewSensor(b001);
-          //  sensorDAL.addNewSensor(b002);
+            final String uri = "http://localhost:8080/create";
+            RestTemplate restTemplate = new RestTemplate();
+
+            restTemplate.postForEntity(uri, b000, Sensor.class, SensorItem.class);
+            restTemplate.postForEntity(uri, b001, Sensor.class, SensorItem.class);
+            restTemplate.postForEntity(uri, b002, Sensor.class, SensorItem.class);
+
             System.out.println(b000 + "\n" + b001 + "\n" + b002);
         }
 
@@ -52,7 +59,10 @@ public class MessageHandler implements MqttCallback {
     public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) { }
 
     public void addSensorItem(Sensor sensor, SensorDaten daten, int counter){
-        SensorItem item = new SensorItem(daten.getSensorId(), daten.getTimestamp(), daten.getValue());
+        SensorItem item = new SensorItem();
+        item.setId(daten.getSensorId());
+        item.setTimestamp(daten.getTimestamp());
+        item.setValue(daten.getValue());
         switch(counter % 5){
             case 0:
                 item.setName("Helligkeit");
