@@ -11,7 +11,7 @@ import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.springframework.web.client.RestTemplate;
 
-import java.net.http.HttpHeaders;
+import java.util.LinkedList;
 
 public class MessageHandler implements MqttCallback {
 
@@ -51,6 +51,9 @@ public class MessageHandler implements MqttCallback {
             restTemplate.postForEntity(uri, b002, Sensor.class, SensorItem.class);
 
             System.out.println(b000 + "\n" + b001 + "\n" + b002);
+            b000.setSensors(new LinkedList<>());
+            b001.setSensors(new LinkedList<>());
+            b002.setSensors(new LinkedList<>());
         }
 
         counter = (counter + 1) % 15;

@@ -1,6 +1,7 @@
 package hitzeresilienzplattform.controller;
 
 import hitzeresilienzplattform.entities.Sensor;
+
 import hitzeresilienzplattform.repositories.SensorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
