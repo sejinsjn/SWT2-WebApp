@@ -10,15 +10,14 @@ Anzeigen und persistieren von Sensordaten aus einem MQTT-Broker
 
 ## Verwendete Technologien
 
-- Client: the web application
+- Client: Webbrowser
 - Webserver: Tomcat
 - Datenbank: MongoDB
-- Framework: Java Spring Boot
+- Frameworks und Libarys: Java Spring Boot
 
 ## Contributors ✨
 
 Thanks goes to these wonderful people
-([emoji key](https://github.com/all-contributors/all-contributors#emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -26,8 +25,8 @@ Thanks goes to these wonderful people
 <table>
   <tr>
     <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>Sedad Cocik</b></sub></a><br /><a href="" title="Code">💻</a></td>
-    <td align="center"><a href=""><img src="" width="100px;" alt="Donavon West"/><br /><sub><b>Justin Fuchs</b></sub></a><br /><a href="" title="Code">💻</a></td>
-      <td align="center"><a href=""><img src="" width="100px;" alt="Donavon West"/><br /><sub><b>Jonas Freyer</b></sub></a><br /><a href="" title="Code">💻</a></td>
+    <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>Justin Fuchs</b></sub></a><br /><a href="" title="Code">💻</a></td>
+      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>Jonas Freyer</b></sub></a><br /><a href="" title="Code">💻</a></td>
   </tr>
 </table>
 
