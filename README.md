@@ -24,9 +24,9 @@ Thanks goes to these wonderful people
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/sejinsjn"><img src="https://avatars.githubusercontent.com/u/76414770?v=4" width="100px;" alt=""/><br /><sub><b>Sedad Cocik</b></sub></a><br /> title="Code">💻</td>
-    <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>Justin Fuchs</b></sub></a><br /> title="Code">💻</td>
-      <td align="center"><a href="https://github.com/Jfreyer99"><img src="https://avatars.githubusercontent.com/u/66331634?v=4" width="100px;" alt=""/><br /><sub><b>Jonas Freyer</b></sub></a><br />title="Code">💻</td>
+    <td align="center"><a href="https://github.com/sejinsjn"><img src="https://avatars.githubusercontent.com/u/76414770?v=4" width="100px;" alt=""/><br /><sub><b>Sedad Cocik</b></sub></a><br /> >💻</td>
+    <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>Justin Fuchs</b></sub></a><br />>💻</td>
+      <td align="center"><a href="https://github.com/Jfreyer99"><img src="https://avatars.githubusercontent.com/u/66331634?v=4" width="100px;" alt=""/><br /><sub><b>Jonas Freyer</b></sub></a><br />>💻</td>
   </tr>
 </table>
 
