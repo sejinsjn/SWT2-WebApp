@@ -1,4 +1,4 @@
-# Hitze-Rezilienz Plattform
+# Hitze-Resilienz Plattform
 
 <p align="center">
     <img src="https://cdn.pixabay.com/photo/2019/06/23/15/42/thermometer-4294021__340.jpg" height="300px">
