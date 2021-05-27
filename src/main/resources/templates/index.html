@@ -2,20 +2,37 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Spring-Boot Example</title>
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico"/>
+    <title>Hitze-Resilienz Plattform</title>
     <meta name="description" content="Ok">
     <meta name="author" content="Ich bins">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="js/sensor.js"></script>
+    <link rel="stylesheet" href="css/styles.css"/>
 </head>
 <body>
-<div id="mapid" style="height: 500px;"></div>
-<div id="container" style="width:100%; height:400px;"></div>
-<h1>User Overview</h1>
 
-<div th:replace="fragments/footer :: footer"></div>
+<header>
+    <img src="images/favi.jpg" width="300" height="300"/>
+    <p>Hitze-Resilienz Plattform für die Stadt Dortmund</p>
+</header>
+
+<div id="mapid"></div>
+
+<section id="graphs">
+    <div class="con" id="container"></div>
+    <div class="con" id="container1"></div>
+    <div class="con" id="container2"></div>
+    <div class="con" id="container3"></div>
+    <div class="con" id="container4"></div>
+</section>
+
+<footer>
+
+</footer>
 <script th:inline="javascript">
 let sen = /*[[${sensors}]]*/ null;
 let title = "Baum-001";
@@ -28,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
             type: 'line'
         },
         title: {
-            text: 'Baum-000 Helligkeit'
+            text: 'Baum-001 Helligkeit'
         },
         xAxis: {
             categories: ['time']
@@ -44,7 +61,91 @@ document.addEventListener('DOMContentLoaded', function () {
         }]
     });
 
-    let mymap = L.map('mapid').setView([51.5145, 7.464772], 14);
+        const chart2 = Highcharts.chart('container1', {
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: 'Baum-001 Niederschlag'
+        },
+        xAxis: {
+            categories: ['time']
+        },
+        yAxis: {
+            title: {
+                text: 'Value'
+            }
+        },
+        series: [{
+            name: title,
+            data: sensor.getValues(sen, title)[1]
+        }]
+    });
+
+        const chart3 = Highcharts.chart('container2', {
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: 'Baum-001 Luftfeuchtigkeit'
+        },
+        xAxis: {
+            categories: ['time']
+        },
+        yAxis: {
+            title: {
+                text: 'Value'
+            }
+        },
+        series: [{
+            name: title,
+            data: sensor.getValues(sen, title)[2]
+        }]
+    });
+
+        const chart4 = Highcharts.chart('container3', {
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: 'Baum-001 Bodenfeuchtigkeit'
+        },
+        xAxis: {
+            categories: ['time']
+        },
+        yAxis: {
+            title: {
+                text: 'Value'
+            }
+        },
+        series: [{
+            name: title,
+            data: sensor.getValues(sen, title)[3]
+        }]
+    });
+
+        const chart5 = Highcharts.chart('container4', {
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: 'Baum-001 Temperatur'
+        },
+        xAxis: {
+            categories: ['time']
+        },
+        yAxis: {
+            title: {
+                text: 'Value'
+            }
+        },
+        series: [{
+            name: title,
+            data: sensor.getValues(sen, title)[4]
+        }]
+    });
+
+        let mymap = L.map('mapid').setView([51.5145, 7.464772], 14);
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         maxZoom: 18,
@@ -53,6 +154,61 @@ document.addEventListener('DOMContentLoaded', function () {
         zoomOffset: -1,
         accessToken: 'pk.eyJ1Ijoic2VqaW5zam4iLCJhIjoiY2twNnRrbnYwMTg1NjJwcjJ2cXc1Z2phciJ9.4VY4Kdvdx7Kdy5OAWOM4cg'
     }).addTo(mymap);
+
+    let markerb000 = L.marker([51.510879, 7.464040]).addTo(mymap).bindPopup('Baum 000<a href="www.google.de">Hallo</a>');
+    let markerb001 = L.marker([51.512875, 7.471388]).addTo(mymap).bindPopup('Baum 001');
+    let markerb002 = L.marker([51.514774, 7.454719]).addTo(mymap).bindPopup('Baum 002');
+
+    markerb000.on('click',() => {
+    console.log("B000");
+    });
+
+    markerb001.on('click',() => {
+    let container = document.getElementsByClassName("con");
+    for(let i = 0; i < container.length; i++)
+    {
+        container[i].style.display = "block";
+    }
+    console.log("B001");
+    });
+
+    markerb002.on('click',() => {
+    console.log("B002");
+    });
+
+    let circle = L.circle([51.510879, 7.464040], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: 20
+}).addTo(mymap);
+
+let circle2 = L.circle([51.512875, 7.471388], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: 20
+}).addTo(mymap);
+
+let circle3 = L.circle([51.514774, 7.454719], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: 20
+}).addTo(mymap);
+
+    circle.on('click',() => {
+    console.log("B000");
+    });
+
+    circle2.on('click',() => {
+    console.log("B001");
+    });
+
+    circle3.on('click',() => {
+    console.log("B002");
+    });
+
 });
 </script>
 </body>

@@ -10,8 +10,6 @@ class Sensor{
 
     getValues(sen, title){
         let senb = sen.filter((sensor) => sensor.title === title);
-
-        let sensoritem = senb[0].sensors;
         let senbH = new Array(), senbN = new Array(), senbL = new Array(), senbB = new Array(), senbT = new Array();
 
         senb.forEach((sensor) => senbH.push(sensor.sensors[0].value));
