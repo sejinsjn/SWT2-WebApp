@@ -17,135 +17,30 @@
 
 <header>
     <img src="images/favi.jpg" width="300" height="300"/>
-    <p>Hitze-Resilienz Plattform für die Stadt Dortmund</p>
+    <p id="title">Hitze-Resilienz Plattform für die Stadt Dortmund</p>
 </header>
 
 <div id="mapid"></div>
 
-<section id="graphs">
-    <div class="con" id="container"></div>
-    <div class="con" id="container1"></div>
-    <div class="con" id="container2"></div>
-    <div class="con" id="container3"></div>
-    <div class="con" id="container4"></div>
-</section>
+<div id="graphs">
+    <div id="container"></div>
+    <div id="container1"></div>
+    <div id="container2"></div>
+    <div id="container3"></div>
+    <div id="container4"></div>
+    <div id="container5"></div>
+</div>
 
 <footer>
 
 </footer>
 <script th:inline="javascript">
 let sen = /*[[${sensors}]]*/ null;
-let title = "Baum-001";
-let sensor = new Sensor(sen, title);
+
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    const chart = Highcharts.chart('container', {
-        chart: {
-            type: 'line'
-        },
-        title: {
-            text: 'Baum-001 Helligkeit'
-        },
-        xAxis: {
-            categories: ['time']
-        },
-        yAxis: {
-            title: {
-                text: 'Value'
-            }
-        },
-        series: [{
-            name: title,
-            data: sensor.getValues(sen, title)[0]
-        }]
-    });
-
-        const chart2 = Highcharts.chart('container1', {
-        chart: {
-            type: 'line'
-        },
-        title: {
-            text: 'Baum-001 Niederschlag'
-        },
-        xAxis: {
-            categories: ['time']
-        },
-        yAxis: {
-            title: {
-                text: 'Value'
-            }
-        },
-        series: [{
-            name: title,
-            data: sensor.getValues(sen, title)[1]
-        }]
-    });
-
-        const chart3 = Highcharts.chart('container2', {
-        chart: {
-            type: 'line'
-        },
-        title: {
-            text: 'Baum-001 Luftfeuchtigkeit'
-        },
-        xAxis: {
-            categories: ['time']
-        },
-        yAxis: {
-            title: {
-                text: 'Value'
-            }
-        },
-        series: [{
-            name: title,
-            data: sensor.getValues(sen, title)[2]
-        }]
-    });
-
-        const chart4 = Highcharts.chart('container3', {
-        chart: {
-            type: 'line'
-        },
-        title: {
-            text: 'Baum-001 Bodenfeuchtigkeit'
-        },
-        xAxis: {
-            categories: ['time']
-        },
-        yAxis: {
-            title: {
-                text: 'Value'
-            }
-        },
-        series: [{
-            name: title,
-            data: sensor.getValues(sen, title)[3]
-        }]
-    });
-
-        const chart5 = Highcharts.chart('container4', {
-        chart: {
-            type: 'line'
-        },
-        title: {
-            text: 'Baum-001 Temperatur'
-        },
-        xAxis: {
-            categories: ['time']
-        },
-        yAxis: {
-            title: {
-                text: 'Value'
-            }
-        },
-        series: [{
-            name: title,
-            data: sensor.getValues(sen, title)[4]
-        }]
-    });
-
-        let mymap = L.map('mapid').setView([51.5145, 7.464772], 14);
+    let mymap = L.map('mapid').setView([51.5145, 7.464772], 14);
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         maxZoom: 18,
@@ -160,55 +55,40 @@ document.addEventListener('DOMContentLoaded', function () {
     let markerb002 = L.marker([51.514774, 7.454719]).addTo(mymap).bindPopup('Baum 002');
 
     markerb000.on('click',() => {
-    console.log("B000");
+        let title = "Baum-000";
+        let sensor = new Sensor(sen, title);
+        document.getElementById("title").innerHTML = "Hello World";
+        sensor.createChart(sensor, title, "Helligkeit", 1);
+        sensor.createChart(sensor, title, "Niederschlag", 2);
+        sensor.createChart(sensor, title, "Luftfeuchtigkeit", 3);
+        sensor.createChart(sensor, title, "Bodenfeuchtigkeit", 4);
+        sensor.createChart(sensor, title, "Temperatur", 5);
+        console.log(title);
     });
 
     markerb001.on('click',() => {
-    let container = document.getElementsByClassName("con");
-    for(let i = 0; i < container.length; i++)
-    {
-        container[i].style.display = "block";
-    }
-    console.log("B001");
+        let title = "Baum-001";
+        let sensor = new Sensor(sen, title);
+        document.getElementById("title").innerHTML = "Hello World";
+        sensor.createChart(sensor, title, "Helligkeit", 1);
+        sensor.createChart(sensor, title, "Niederschlag", 2);
+        sensor.createChart(sensor, title, "Luftfeuchtigkeit", 3);
+        sensor.createChart(sensor, title, "Bodenfeuchtigkeit", 4);
+        sensor.createChart(sensor, title, "Temperatur", 5);
+        console.log(title);
     });
 
     markerb002.on('click',() => {
-    console.log("B002");
+        let title = "Baum-002";
+        let sensor = new Sensor(sen, title);
+        document.getElementById("title").innerHTML = "Hello World";
+        sensor.createChart(sensor, title, "Helligkeit", 1);
+        sensor.createChart(sensor, title, "Niederschlag", 2);
+        sensor.createChart(sensor, title, "Luftfeuchtigkeit", 3);
+        sensor.createChart(sensor, title, "Bodenfeuchtigkeit", 4);
+        sensor.createChart(sensor, title, "Temperatur", 5);
+        console.log(title);
     });
-
-    let circle = L.circle([51.510879, 7.464040], {
-    color: 'red',
-    fillColor: '#f03',
-    fillOpacity: 0.5,
-    radius: 20
-}).addTo(mymap);
-
-let circle2 = L.circle([51.512875, 7.471388], {
-    color: 'red',
-    fillColor: '#f03',
-    fillOpacity: 0.5,
-    radius: 20
-}).addTo(mymap);
-
-let circle3 = L.circle([51.514774, 7.454719], {
-    color: 'red',
-    fillColor: '#f03',
-    fillOpacity: 0.5,
-    radius: 20
-}).addTo(mymap);
-
-    circle.on('click',() => {
-    console.log("B000");
-    });
-
-    circle2.on('click',() => {
-    console.log("B001");
-    });
-
-    circle3.on('click',() => {
-    console.log("B002");
-    });
-
 });
 </script>
 </body>

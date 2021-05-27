@@ -20,4 +20,30 @@ class Sensor{
 
         return [senbH, senbN, senbL, senbB, senbT];
     }
+
+    createChart(sensor, title, sensorname, id){
+        console.log('container' + id);
+        const chart = Highcharts.chart('container' + id, {
+            chart: {
+                type: 'line'
+            },
+            title: {
+                text: title + ' ' + sensorname
+            },
+            xAxis: {
+                categories: ['time']
+            },
+            yAxis: {
+                title: {
+                    text: 'Value'
+                }
+            },
+            series: [{
+                name: title,
+                data: sensor.getValues(sen, title)[0]
+            }]
+        });
+
+        return chart;
+    }
 }
