@@ -43,7 +43,5 @@ class Sensor{
                 data: sensor.getValues(sen, title)[0]
             }]
         });
-
-        return chart;
     }
 }
