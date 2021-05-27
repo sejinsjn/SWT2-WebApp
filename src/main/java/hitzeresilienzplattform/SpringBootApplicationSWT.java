@@ -14,15 +14,17 @@ public class SpringBootApplicationSWT {
 
 		System.out.println("== START SUBSCRIBER ==");
 		String topicSWT = "SWT_SMART_CITY_SENSORS";
+
 		MqttClient client=new MqttClient("tcp://compress.seelab.fh-dortmund.de:1883", MqttClient.generateClientId());
+
 		MessageHandler handler = new MessageHandler();
 		client.setCallback( handler );
+
 		MqttConnectOptions opt = new MqttConnectOptions();
 		opt.setUserName("swt2");
 		opt.setPassword("sose2021".toCharArray());
 
 		client.connect(opt);
-
 		client.subscribe(topicSWT);
 
 		SpringApplication.run(SpringBootApplicationSWT.class, args);

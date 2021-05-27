@@ -3,34 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <title>Spring-Boot Example</title>
-    <meta name="description" content="This is an example spring boot application">
-    <meta name="author" content="Timon Sachweh">
+    <meta name="description" content="Ok">
+    <meta name="author" content="Ich bins">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="js/sensor.js"></script>
 </head>
 <body>
+<div id="container" style="width:100%; height:400px;"></div>
+<div id="mapid" style="height: 500px;"></div>
 <h1>User Overview</h1>
-<table>
-    <thead>
-    <tr>
-        <th> Username</th>
-        <th> Email</th>
-        <th> Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:if="${users == null}">
-        <td colspan="2"> No Users stored</td>
-    </tr>
-    <tr th:each="user: ${users}">
-        <td><span th:text="${user.username}"> Username </span></td>
-        <td><span th:text="${user.email}"> Email </span></td>
-        <td>
-            <a th:href="@{'/deleteUser/{id}'(id=${user.id})}">Delete</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
 
 <div th:replace="fragments/footer :: footer"></div>
+<script th:inline="javascript">
+let sen = /*[[${sensors}]]*/ null;
+let title = "Baum-001";
+let sensor = new Sensor(sen, title);
 
+document.addEventListener('DOMContentLoaded', function () {
+
+    const chart = Highcharts.chart('container', {
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: 'Fruit Consumption'
+        },
+        xAxis: {
+            categories: ['time']
+        },
+        yAxis: {
+            title: {
+                text: 'Fruit eaten'
+            }
+        },
+        series: [{
+            name: title,
+            data: sensor.getValues(sen, title)[0]
+        }]
+    });
+
+    var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'pk.eyJ1Ijoic2VqaW5zam4iLCJhIjoiY2twNnRrbnYwMTg1NjJwcjJ2cXc1Z2phciJ9.4VY4Kdvdx7Kdy5OAWOM4cg'
+    }).addTo(mymap);
+});
+</script>
 </body>
 </html>
