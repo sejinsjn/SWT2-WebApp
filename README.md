@@ -13,7 +13,8 @@ Anzeigen und persistieren von Sensordaten aus einem MQTT-Broker
 - Client: Webbrowser
 - Webserver: Tomcat
 - Datenbank: MongoDB
-- Frameworks und Libarys: Java Spring Boot
+- Frameworks und Libarys: Java Spring Boot, Leaflet mit OpenStreetMap und Mapbox,
+    HighCharts.js 
 
 ## Contributors ✨
 
