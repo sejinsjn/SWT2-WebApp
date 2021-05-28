@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
     <script src="js/sensor.js"></script>
     <link rel="stylesheet" href="css/styles.css"/>
 </head>
@@ -49,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
         accessToken: 'pk.eyJ1Ijoic2VqaW5zam4iLCJhIjoiY2twNnRrbnYwMTg1NjJwcjJ2cXc1Z2phciJ9.4VY4Kdvdx7Kdy5OAWOM4cg'
     }).addTo(mymap);
 
-    let markerb000 = L.marker([51.510879, 7.464040]).addTo(mymap).bindPopup('Baum 000<a href="www.google.de">Hallo</a>');
+    let markerb000 = L.marker([51.510879, 7.464040]).addTo(mymap).bindPopup('Baum 000');
     let markerb001 = L.marker([51.512875, 7.471388]).addTo(mymap).bindPopup('Baum 001');
     let markerb002 = L.marker([51.514774, 7.454719]).addTo(mymap).bindPopup('Baum 002');
 
@@ -61,6 +65,9 @@ document.addEventListener('DOMContentLoaded', function () {
         sensor.createChart(sensor, title, "Luftfeuchtigkeit", 2);
         sensor.createChart(sensor, title, "Bodenfeuchtigkeit", 3);
         sensor.createChart(sensor, title, "Temperatur", 4);
+            $('html,body').animate({
+        scrollTop: $("#graphs").offset().top},
+        'slow');
         console.log(title);
     });
 
@@ -72,6 +79,9 @@ document.addEventListener('DOMContentLoaded', function () {
         sensor.createChart(sensor, title, "Luftfeuchtigkeit", 2);
         sensor.createChart(sensor, title, "Bodenfeuchtigkeit", 3);
         sensor.createChart(sensor, title, "Temperatur", 4);
+            $('html,body').animate({
+        scrollTop: $("#graphs").offset().top},
+        'slow');
         console.log(title);
     });
 
@@ -83,8 +93,12 @@ document.addEventListener('DOMContentLoaded', function () {
         sensor.createChart(sensor, title, "Luftfeuchtigkeit", 2);
         sensor.createChart(sensor, title, "Bodenfeuchtigkeit", 3);
         sensor.createChart(sensor, title, "Temperatur", 4);
+            $('html,body').animate({
+        scrollTop: $("#graphs").offset().top},
+        'slow');
         console.log(title);
     });
+
 });
 </script>
 </body>
