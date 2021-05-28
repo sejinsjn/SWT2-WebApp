@@ -40,7 +40,7 @@ class Sensor{
             },
             series: [{
                 name: title,
-                data: sensor.getValues(sen, title)[0]
+                data: sensor.getValues(sen, title)[id]
             }]
         });
     }

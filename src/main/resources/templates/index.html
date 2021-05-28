@@ -23,12 +23,11 @@
 <div id="mapid"></div>
 
 <div id="graphs">
-    <div id="container"></div>
+    <div id="container0"></div>
     <div id="container1"></div>
     <div id="container2"></div>
     <div id="container3"></div>
     <div id="container4"></div>
-    <div id="container5"></div>
 </div>
 
 <footer>
@@ -57,36 +56,33 @@ document.addEventListener('DOMContentLoaded', function () {
     markerb000.on('click',() => {
         let title = "Baum-000";
         let sensor = new Sensor(sen, title);
-        document.getElementById("title").innerHTML = "Hello World";
-        sensor.createChart(sensor, title, "Helligkeit", 1);
-        sensor.createChart(sensor, title, "Niederschlag", 2);
-        sensor.createChart(sensor, title, "Luftfeuchtigkeit", 3);
-        sensor.createChart(sensor, title, "Bodenfeuchtigkeit", 4);
-        sensor.createChart(sensor, title, "Temperatur", 5);
+        sensor.createChart(sensor, title, "Helligkeit", 0);
+        sensor.createChart(sensor, title, "Niederschlag", 1);
+        sensor.createChart(sensor, title, "Luftfeuchtigkeit", 2);
+        sensor.createChart(sensor, title, "Bodenfeuchtigkeit", 3);
+        sensor.createChart(sensor, title, "Temperatur", 4);
         console.log(title);
     });
 
     markerb001.on('click',() => {
         let title = "Baum-001";
         let sensor = new Sensor(sen, title);
-        document.getElementById("title").innerHTML = "Hello World";
-        sensor.createChart(sensor, title, "Helligkeit", 1);
-        sensor.createChart(sensor, title, "Niederschlag", 2);
-        sensor.createChart(sensor, title, "Luftfeuchtigkeit", 3);
-        sensor.createChart(sensor, title, "Bodenfeuchtigkeit", 4);
-        sensor.createChart(sensor, title, "Temperatur", 5);
+        sensor.createChart(sensor, title, "Helligkeit", 0);
+        sensor.createChart(sensor, title, "Niederschlag", 1);
+        sensor.createChart(sensor, title, "Luftfeuchtigkeit", 2);
+        sensor.createChart(sensor, title, "Bodenfeuchtigkeit", 3);
+        sensor.createChart(sensor, title, "Temperatur", 4);
         console.log(title);
     });
 
     markerb002.on('click',() => {
         let title = "Baum-002";
         let sensor = new Sensor(sen, title);
-        document.getElementById("title").innerHTML = "Hello World";
-        sensor.createChart(sensor, title, "Helligkeit", 1);
-        sensor.createChart(sensor, title, "Niederschlag", 2);
-        sensor.createChart(sensor, title, "Luftfeuchtigkeit", 3);
-        sensor.createChart(sensor, title, "Bodenfeuchtigkeit", 4);
-        sensor.createChart(sensor, title, "Temperatur", 5);
+        sensor.createChart(sensor, title, "Helligkeit", 0);
+        sensor.createChart(sensor, title, "Niederschlag", 1);
+        sensor.createChart(sensor, title, "Luftfeuchtigkeit", 2);
+        sensor.createChart(sensor, title, "Bodenfeuchtigkeit", 3);
+        sensor.createChart(sensor, title, "Temperatur", 4);
         console.log(title);
     });
 });
