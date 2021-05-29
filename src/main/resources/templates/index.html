@@ -64,6 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }).addTo(mymap);
 
 
+
     let markerb000 = L.marker([51.510879, 7.464040], {icon: treeIcon}).addTo(mymap).bindPopup('Baum 000');
     let markerb001 = L.marker([51.512875, 7.471388], {icon: treeIcon}).addTo(mymap).bindPopup('Baum 001');
     let markerb002 = L.marker([51.514774, 7.454719], {icon: treeIcon}).addTo(mymap).bindPopup('Baum 002');
@@ -115,6 +116,24 @@ document.addEventListener('DOMContentLoaded', function () {
         'slow');
         console.log(title);
     });
+
+     //disable default scroll
+  mymap.scrollWheelZoom.disable();
+
+  $("#mapid").bind('mousewheel DOMMouseScroll', (event) =>  {
+    event.stopPropagation();
+     if (event.ctrlKey == true) {
+             event.preventDefault();
+         mymap.scrollWheelZoom.enable();
+         setTimeout(function(){
+             mymap.scrollWheelZoom.disable();
+         }, 1000);
+     }
+     else
+     {
+        //Add code to display "use ctrl to scroll" on map
+     }
+ });
 
 });
 </script>
