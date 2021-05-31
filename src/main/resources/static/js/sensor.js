@@ -76,11 +76,6 @@ class Map{
         marker.push(markerb001);
         marker.push(markerb002);
 
-        $("#button").click( (e) => {
-                    $('html,body').animate({
-        scrollTop: $("#mapid").offset().top},
-        'fast');});
-
        //disable default scroll
       mymap.scrollWheelZoom.disable();
 
@@ -107,6 +102,7 @@ class Map{
             sensor.createChart(sensor, title, "Luftfeuchtigkeit", 2);
             sensor.createChart(sensor, title, "Bodenfeuchtigkeit", 3);
             sensor.createChart(sensor, title, "Temperatur", 4);
+            $('html,body').animate({scrollTop: $("#graphs").offset().top},'fast');
         });
     }
 }

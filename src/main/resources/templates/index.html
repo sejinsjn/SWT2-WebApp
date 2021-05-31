@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
     map.createChartsForMarker(sensor001, 'Baum-001', marker[1]);
     map.createChartsForMarker(sensor002, 'Baum-002', marker[2]);
 
-    $('html,body').animate({ scrollTop: $("#graphs").offset().top}, 'slow');
+    $("#button").click( (e) => { $('html,body').animate({scrollTop: $("#mapid").offset().top},'fast');});
 });
 </script>
 </body>
