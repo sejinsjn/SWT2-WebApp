@@ -10,8 +10,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script
-            src="https://code.jquery.com/jquery-3.6.0.min.js"
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
             crossorigin="anonymous"></script>
     <script src="js/sensor.js"></script>
@@ -52,7 +51,6 @@ document.addEventListener('DOMContentLoaded', function () {
     map.createChartsForMarker(sensor000, 'Baum-000', marker[0]);
     map.createChartsForMarker(sensor001, 'Baum-001', marker[1]);
     map.createChartsForMarker(sensor002, 'Baum-002', marker[2]);
-
     $("#button").click( (e) => { $('html,body').animate({scrollTop: $("#mapid").offset().top},'fast');});
 });
 </script>

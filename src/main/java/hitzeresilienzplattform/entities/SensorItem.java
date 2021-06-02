@@ -11,7 +11,7 @@ public class SensorItem {
     private String name;
     @Id
     private String id;
-    private String timestamp;
+    private long timestamp;
     private double value;
 
     public String getName() {
@@ -26,9 +26,9 @@ public class SensorItem {
 
     public String getId() { return id; }
 
-    public String getTimestamp() { return timestamp; }
+    public long getTimestamp() { return timestamp; }
 
-    public void setTimestamp(String timestamp) { this.timestamp = timestamp; }
+    public void setTimestamp(long timestamp) { this.timestamp = timestamp; }
 
     public double getValue() {  return value; }
 

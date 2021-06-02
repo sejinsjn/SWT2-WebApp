@@ -12,13 +12,22 @@ class Sensor{
         let senb = sen.filter((sensor) => sensor.title === title);
         let senbH = new Array(), senbN = new Array(), senbL = new Array(), senbB = new Array(), senbT = new Array();
 
-        senb.forEach((sensor) => senbH.push(sensor.sensors[0].value));
-        senb.forEach((sensor) => senbN.push(sensor.sensors[1].value));
-        senb.forEach((sensor) => senbL.push(sensor.sensors[2].value));
-        senb.forEach((sensor) => senbB.push(sensor.sensors[3].value));
-        senb.forEach((sensor) => senbT.push(sensor.sensors[4].value));
+        senb.forEach((sensor) => senbH.push(this.pushVandT(sensor, 0)));
+        senb.forEach((sensor) => senbN.push(this.pushVandT(sensor, 1)));
+        senb.forEach((sensor) => senbL.push(this.pushVandT(sensor, 2)));
+        senb.forEach((sensor) => senbB.push(this.pushVandT(sensor, 3)));
+        senb.forEach((sensor) => senbT.push(this.pushVandT(sensor, 4)));
 
         return [senbH, senbN, senbL, senbB, senbT];
+    }
+
+    pushVandT(sensor, id){
+        let senb = new Array();
+
+        senb.push(sensor.sensors[id].timestamp);
+        senb.push(sensor.sensors[id].value);
+
+        return senb;
     }
 
     createChart(sensor, title, sensorname, id){
@@ -31,7 +40,13 @@ class Sensor{
                 text: title + ' ' + sensorname
             },
             xAxis: {
-                categories: ['time']
+                  title: {
+                    text: 'Date'
+                  },
+                  type: 'datetime',
+                  labels: {
+                      format: '{value:%e-%b-%y}'
+                  },
             },
             yAxis: {
                 title: {
@@ -52,7 +67,6 @@ class Map{
 
         let treeIcon = L.icon({
             iconUrl: 'images/tree.png',
-
             iconSize:     [60, 95], // size of the icon
             iconAnchor:   [30, 94], // point of the icon which will correspond to marker's location
             popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
@@ -76,23 +90,22 @@ class Map{
         marker.push(markerb001);
         marker.push(markerb002);
 
-       //disable default scroll
-      mymap.scrollWheelZoom.disable();
+        //disable default scroll
+        mymap.scrollWheelZoom.disable();
 
-      $("#mapid").bind('mousewheel DOMMouseScroll', (event) =>  {
-        event.stopPropagation();
-         if (event.ctrlKey == true) {
-                 event.preventDefault();
-             mymap.scrollWheelZoom.enable();
-             setTimeout(function(){
-                 mymap.scrollWheelZoom.disable();
-             }, 1000);
-         }
-         else{
+        $("#mapid").bind('mousewheel DOMMouseScroll', (event) =>  {
+            event.stopPropagation();
+            if (event.ctrlKey == true) {
+                event.preventDefault();
+                mymap.scrollWheelZoom.enable();
+                setTimeout(function(){
+                    mymap.scrollWheelZoom.disable();
+                }, 1000);
+            }else{
             //Add code to display "use ctrl to scroll" on map
-         }
-      });
-      return marker;
+            }
+        });
+        return marker;
     }
 
     createChartsForMarker(sensor, title, marker){
