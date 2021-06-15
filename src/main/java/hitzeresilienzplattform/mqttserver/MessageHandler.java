@@ -2,6 +2,7 @@ package hitzeresilienzplattform.mqttserver;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import hitzeresilienzplattform.entities.MetaDaten;
 import hitzeresilienzplattform.entities.Sensor;
 import hitzeresilienzplattform.entities.SensorDaten;
 import hitzeresilienzplattform.entities.SensorItem;
@@ -37,6 +38,32 @@ public class MessageHandler implements MqttCallback {
     public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
         this.json = new String(mqttMessage.getPayload());
         SensorDaten daten = new ObjectMapper().readValue(this.json, SensorDaten.class);
+        double[] geoko = new double[2];
+        boolean sensorstatus = false;
+
+        switch(counter){
+            case 0:
+                geoko[0] = 51.510879;
+                geoko[1] = 7.464040;
+                if(daten != null)
+                    sensorstatus = true;
+                b000.setMetadaten(addMetaDate(sensorstatus, geoko));
+                break;
+            case 5:
+                geoko[0] = 51.512875;
+                geoko[1] = 7.471388;
+                if(daten != null)
+                    sensorstatus = true;
+                b001.setMetadaten(addMetaDate(sensorstatus, geoko));
+                break;
+            case 10:
+                geoko[0] = 51.514774;
+                geoko[1] = 7.454719;
+                if(daten != null)
+                    sensorstatus = true;
+                b002.setMetadaten(addMetaDate(sensorstatus, geoko));
+                break;
+        }
 
         if (counter <= 4)
             addSensorItem(b000, daten, counter);
@@ -51,9 +78,9 @@ public class MessageHandler implements MqttCallback {
             final String uri = "http://localhost:8080/create";
             RestTemplate restTemplate = new RestTemplate();
 
-            restTemplate.postForEntity(uri, b000, Sensor.class, SensorItem.class);
-            restTemplate.postForEntity(uri, b001, Sensor.class, SensorItem.class);
-            restTemplate.postForEntity(uri, b002, Sensor.class, SensorItem.class);
+            restTemplate.postForEntity(uri, b000, Sensor.class, SensorItem.class, MetaDaten.class);
+            restTemplate.postForEntity(uri, b001, Sensor.class, SensorItem.class, MetaDaten.class);
+            restTemplate.postForEntity(uri, b002, Sensor.class, SensorItem.class, MetaDaten.class);
 
             System.out.println(b000 + "\n" + b001 + "\n" + b002);
 
@@ -96,5 +123,14 @@ public class MessageHandler implements MqttCallback {
                 sensor.getSensors().add(item);
                 break;
         }
+    }
+
+    public MetaDaten addMetaDate(boolean sensorstatus, double[] geoko){
+        MetaDaten metadaten = new MetaDaten();
+
+        metadaten.setSensorstatus(sensorstatus);
+        metadaten.setGeokoordinaten(geoko);
+
+        return metadaten;
     }
 }

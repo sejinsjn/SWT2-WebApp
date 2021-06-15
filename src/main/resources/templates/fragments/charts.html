@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico"/>
+    <title>Hitze-Resilienz Plattform</title>
+    <meta name="description" content="Ok">
+    <meta name="author" content="Ich bins">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>
+    <link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body>
+<div th:fragment="charts" id="charts">
+    <div id="graphs">
+        <div>
+            <div>
+                <form id="interval">
+                    <button name="intervalVal"value="1" type="submit">1</button>
+                    <button name="intervalVal"value="7" type="submit">7</button>
+                    <button name="intervalVal"value="30" type="submit">30</button>
+                    <button name="intervalVal"value="60" type="submit">60</button>
+                    <button name="intervalVal" value="90" type="submit">90</button>
+                    <button name="intervalVal" value="All" type="submit">All</button>
+                </form>
+            </div>
+        </div>
+        <div id="container0"></div>
+        <div id="container1"></div>
+        <div id="container2"></div>
+        <div id="container3"></div>
+        <div id="container4"></div>
+    </div>
+
+    <script th:inline="javascript">
+        if(markerClicked == false){
+            sen = /*[[${sensors}]]*/ null;
+            baum = new Baum(sen);
+            if(baumTitle != null){
+                baum.createChartsForBaum(baumTitle);
+            }
+        }
+
+        $("#interval").submit(function (event) {
+            //stop submit the form, we will post it manually.
+            event.preventDefault();
+
+            getContent();
+        });
+    </script>
+</div>
+</body>
+</html>

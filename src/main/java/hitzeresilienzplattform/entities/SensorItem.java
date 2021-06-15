@@ -35,7 +35,5 @@ public class SensorItem {
     public void setValue(double value) { this.value = value; }
 
     @Override
-    public String toString(){
-        return this.name + ", " + this.id + ", " + this.timestamp + ", " + this.value;
-    }
+    public String toString(){ return this.name + ", " + this.id + ", " + this.timestamp + ", " + this.value; }
 }

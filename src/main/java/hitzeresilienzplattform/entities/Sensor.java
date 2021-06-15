@@ -1,7 +1,10 @@
 package hitzeresilienzplattform.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.query.Meta;
 
 import java.io.Serializable;
 import java.util.LinkedList;
@@ -14,6 +17,7 @@ public class Sensor implements Serializable{
     private String id;
     private String title;
     private List<SensorItem> sensors = new LinkedList();
+    private MetaDaten metadaten;
 
     public String getTitle() { return title; }
 
@@ -26,6 +30,10 @@ public class Sensor implements Serializable{
     public String getId() { return id; }
 
     public void setId(String id) { this.id = id; }
+
+    public MetaDaten getMetadaten() { return metadaten; }
+
+    public void setMetadaten(MetaDaten metadaten) { this.metadaten = metadaten; }
 
     @Override
     public String toString(){

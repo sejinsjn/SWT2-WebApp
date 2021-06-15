@@ -13,46 +13,46 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
             crossorigin="anonymous"></script>
-    <script src="js/sensor.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="js/script.js"></script>
     <link rel="stylesheet" href="css/styles.css"/>
 </head>
 <body>
 
 <header>
     <img src="images/favi.jpg" width="300" height="300"/>
-    <p id="title">Hitze-Resilienz Plattform für die Stadt Dortmund</p>
+    <p id="title">Hitze-Resilienz Plattform für die Stadt</p>
 </header>
 
 <div id="button"><img width="100" height="100" src="images/arrow.png" alt="+"/></div>
 
 <div id="mapid"></div>
+<div id="charts"> </div>
 
-<div id="graphs">
-    <div id="container0"></div>
-    <div id="container1"></div>
-    <div id="container2"></div>
-    <div id="container3"></div>
-    <div id="container4"></div>
-</div>
-
-<footer>
-
-</footer>
 <script th:inline="javascript">
-let sen = /*[[${sensors}]]*/ null;
-let sensor000 = new Sensor(sen);
-let sensor001 = new Sensor(sen);
-let sensor002 = new Sensor(sen);
+        let sen = /*[[${sensors}]]*/ null;
+        let baum = new Baum(sen);
+        let map = new Map();
+        let baumTitle = null;
+        let markerClicked = false;
+        let marker = map.createMap(sen[sen.length-3].metadaten.geokoordinaten, sen[sen.length-2].metadaten.geokoordinaten, sen[sen.length-1].metadaten.geokoordinaten);
+        map.setOnClickForAllMarker(baum, marker);
+        $("#button").click( (e) => { $('html,body').animate({scrollTop: $("#mapid").offset().top},'fast');});
 
-document.addEventListener('DOMContentLoaded', function () {
+        getContent();
 
-    let map = new Map();
-    let marker = map.createMap();
-    map.createChartsForMarker(sensor000, 'Baum-000', marker[0]);
-    map.createChartsForMarker(sensor001, 'Baum-001', marker[1]);
-    map.createChartsForMarker(sensor002, 'Baum-002', marker[2]);
-    $("#button").click( (e) => { $('html,body').animate({scrollTop: $("#mapid").offset().top},'fast');});
-});
-</script>
+        function getContent() {
+            markerClicked = false;
+            //create url to request fragment
+            var activeElement = document.activeElement;
+            if(activeElement.value != null){
+                var url = '/request?interval=' + activeElement.value;
+            }else{
+                var url = '/request?interval=All';
+            }
+            //load fragment and replace content
+            $('#charts').load(url);
+        }
+    </script>
 </body>
 </html>

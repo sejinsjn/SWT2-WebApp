@@ -4,6 +4,7 @@ import hitzeresilienzplattform.entities.Sensor;
 
 import hitzeresilienzplattform.repositories.SensorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,9 +18,7 @@ public class SensorController {
     public Sensor addNewSensor(@RequestBody Sensor sensor) { return sensorRepository.save(sensor); }
 
     @RequestMapping(value = "/db/getAll", method = RequestMethod.GET)
-    public List<Sensor> getAllSensor(){
-        return sensorRepository.findAll();
-    }
+    public List<Sensor> getAllSensor(){  return sensorRepository.findAll(); }
 
     @Autowired
     public void setSensorRepository(SensorRepository sensorRepository){ this.sensorRepository = sensorRepository; }
