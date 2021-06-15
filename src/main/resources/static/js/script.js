@@ -116,7 +116,8 @@ class Map{
     setOnClickForMarker(baum, title, marker){
         marker.on('click',() => {
             baumTitle = title;
-            baum.createChartsForBaum(title);
+            markerClicked = true;
+            getContent();
             $('html,body').animate({scrollTop: $("#graphs").offset().top},'fast');
         });
     }
