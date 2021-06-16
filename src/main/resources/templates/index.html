@@ -8,12 +8,12 @@
     <meta name="author" content="Ich bins">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
             crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="js/script.js"></script>
     <link rel="stylesheet" href="css/styles.css"/>
 </head>
@@ -27,31 +27,49 @@
 <div id="button"><img width="100" height="100" src="images/arrow.png" alt="+"/></div>
 
 <div id="mapid"></div>
-<div id="charts"></div>
+<div id="charts">
+    <div id="baum">
+        <div>
+            <form id="interval">
+                <button name="intervalVal"value="1" type="submit">1</button>
+                <button name="intervalVal"value="7" type="submit">7</button>
+                <button name="intervalVal"value="30" type="submit">30</button>
+                <button name="intervalVal"value="60" type="submit">60</button>
+                <button name="intervalVal" value="90" type="submit">90</button>
+                <button name="intervalVal" value="All" type="submit">All</button>
+            </form>
+        </div>
+    </div>
+    <div id="container0"></div>
+    <div id="container1"></div>
+    <div id="container2"></div>
+    <div id="container3"></div>
+    <div id="container4"></div>
+</div>
+<div id="scriptCharts"></div>
 
 <script th:inline="javascript">
         let sen = /*[[${sensors}]]*/ null;
         let baum = new Baum(sen);
         let map = new Map();
+
         let baumTitle = null;
         let markerClicked = false;
+        let display = false;
+        let highchartsExists = false;
+
         let marker = map.createMap(sen[sen.length-3].metadaten.geokoordinaten, sen[sen.length-2].metadaten.geokoordinaten, sen[sen.length-1].metadaten.geokoordinaten);
         map.setOnClickForAllMarker(baum, marker);
+
         $("#button").click( (e) => { $('html,body').animate({scrollTop: $("#mapid").offset().top},'fast');});
 
-        getContent();
+        $("#interval").submit(function (event) {
+            event.preventDefault();
+            markerClicked = false;
+            baum.getContent();
+        });
 
-        function getContent() {
-            //create url to request fragment
-            var activeElement = document.activeElement;
-            if(activeElement.value != null){
-                var url = '/request?interval=' + activeElement.value;
-            }else{
-                var url = '/request?interval=All';
-            }
-            //load fragment and replace content
-            $('#charts').load(url);
-        }
+        baum.getContent();
     </script>
 </body>
 </html>

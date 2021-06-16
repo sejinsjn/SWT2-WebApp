@@ -2,6 +2,7 @@ class Baum{
 
     constructor(sensors){
         this.sensors = sensors;
+        this.charts = new Array(5);
     }
 
     printout(){
@@ -55,7 +56,7 @@ class Baum{
             series: [{
                 name: title,
                 data: this.getValues(title)[id]
-            }]
+            }],
         });
     }
 
@@ -65,6 +66,47 @@ class Baum{
         this.createChart(title, "Luftfeuchtigkeit", 2);
         this.createChart(title, "Bodenfeuchtigkeit", 3);
         this.createChart(title, "Temperatur", 4);
+    }
+
+    updateChart(title, sensorname, id){
+        var newSeries = [{
+            name: title,
+            data: this.getValues(title)[id]
+        }]
+        if($('#container' + id).highcharts() != null){
+            $('#container' + id).highcharts().update({
+                title: {
+                        text: title + ' ' + sensorname
+                },
+                series: newSeries,
+            });
+        }
+    }
+
+    updateChartsForBaum(title){
+        this.updateChart(title, "Helligkeit", 0);
+        this.updateChart(title, "Niederschlag", 1);
+        this.updateChart(title, "Luftfeuchtigkeit", 2);
+        this.updateChart(title, "Bodenfeuchtigkeit", 3);
+        this.updateChart(title, "Temperatur", 4);
+    }
+
+    getContent() {
+        if(display){
+            $('#baum').show();
+        }else{
+            document.getElementById("baum").style.display = "none";
+        }
+
+        //create url to request fragment
+        var activeElement = document.activeElement;
+        if(markerClicked === false && activeElement.value != null){
+            var url = '/request?interval=' + activeElement.value;
+        }else{
+            var url = '/request?interval=All';
+        }
+        //load fragment and replace content
+        $('#scriptCharts').load(url);
     }
 }
 
@@ -117,8 +159,17 @@ class Map{
         marker.on('click',() => {
             baumTitle = title;
             markerClicked = true;
-            getContent();
-            $('html,body').animate({scrollTop: $("#graphs").offset().top},'fast');
+            display = true;
+            $('html,body').animate({scrollTop: $("#charts").offset().top}, 'fast');
+            $(window).scroll(function(){
+                if($('html,body').scrollTop() === $("#charts").offset().top + 0.5){
+                    baum.getContent();
+                }
+            });
+
+            if(highchartsExists == false){
+                $('html,body').animate({scrollTop: $("#charts").offset().top}, 'fast', baum.getContent());
+            }
         });
     }
 
