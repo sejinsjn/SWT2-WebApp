@@ -30,64 +30,36 @@ class Baum{
         return senb;
     }
 
-    createChart(title, sensorname, id){
-        const chart = Highcharts.stockChart('container' + id, {
-            chart: {
-                type: 'line'
-            },
-            title: {
-                text: title + ' ' + sensorname
-            },
-            xAxis: {
-                  title: {
-                    text: 'Date'
-                  },
-                  type: 'datetime',
-                  labels: {
-                      format: '{value:%e-%b-%y}'
-                  },
-            },
-            yAxis: {
-                title: {
-                    text: 'Value'
-                }
-            },
-            series: [{
-                name: title,
-                data: this.getValues(title)[id]
-            }],
+    createChart(title){
+        const chart = Highcharts.stockChart('container', {
+            chart: { type: 'line' },
+            title: { text: title },
+            xAxis: { title: { text: 'Date' }, type: 'datetime', labels: { format: '{value:%e-%b-%y}' } },
+            yAxis: [{ labels: { align: 'right', x: -3 }, title: { text: 'Value' }, height: '17%', lineWidth: 2, offset: 0, resize: { enabled: true } },
+            { labels: { align: 'right', x: 0 }, title: { text: 'Value' }, top: '20%', height: '17%', lineWidth: 2, offset: 0, resize: { enabled: true } },
+            { labels: { align: 'right', x: -3 }, title: { text: 'Value' }, top: '40%', height: '17%', lineWidth: 2, offset: 0, resize: { enabled: true } },
+            { labels: { align: 'right', x: -3 }, title: { text: 'Value' }, top: '60%', height: '17%', lineWidth: 2, offset: 0, resize: { enabled: true } },
+            { labels: { align: 'right', x: -3 }, title: { text: 'Value' }, top: '80%', height: '17%', lineWidth: 2, offset: 0, resize: { enabled: true } }],
+            tooltip: { split: true },
+            series: [ {  type: 'line', name: 'Helligkeit', data: this.getValues(title)[0] },
+            { type: 'line', name: 'Niederschlag', data: this.getValues(title)[1], yAxis: 1 },
+            { type: 'line', name: 'Luftfeuchtigkeit', data: this.getValues(title)[2], yAxis: 2 },
+            { type: 'line', name: 'Bodenfeuchtigkeit', data: this.getValues(title)[3], yAxis: 3 },
+            { type: 'line', name: 'Temperatur', data: this.getValues(title)[4], yAxis: 4 } ]
         });
     }
 
-    createChartsForBaum(title){
-        this.createChart(title, "Helligkeit", 0);
-        this.createChart(title, "Niederschlag", 1);
-        this.createChart(title, "Luftfeuchtigkeit", 2);
-        this.createChart(title, "Bodenfeuchtigkeit", 3);
-        this.createChart(title, "Temperatur", 4);
-    }
-
-    updateChart(title, sensorname, id){
-        var newSeries = [{
-            name: title,
-            data: this.getValues(title)[id]
-        }]
-        if($('#container' + id).highcharts() != null){
-            $('#container' + id).highcharts().update({
-                title: {
-                        text: title + ' ' + sensorname
-                },
-                series: newSeries,
+    updateChart(title){
+        if($('#container').highcharts() != null){
+            $('#container').highcharts().update({
+                title: { text: title },
+                series: [ {  type: 'line', name: 'Helligkeit', data: this.getValues(title)[0] },
+                { type: 'line', name: 'Niederschlag', data: this.getValues(title)[1], yAxis: 1 },
+                { type: 'line', name: 'Luftfeuchtigkeit', data: this.getValues(title)[2], yAxis: 2 },
+                { type: 'line', name: 'Bodenfeuchtigkeit', data: this.getValues(title)[3], yAxis: 3 },
+                { type: 'line', name: 'Temperatur', data: this.getValues(title)[4], yAxis: 4 } ]
             });
         }
-    }
-
-    updateChartsForBaum(title){
-        this.updateChart(title, "Helligkeit", 0);
-        this.updateChart(title, "Niederschlag", 1);
-        this.updateChart(title, "Luftfeuchtigkeit", 2);
-        this.updateChart(title, "Bodenfeuchtigkeit", 3);
-        this.updateChart(title, "Temperatur", 4);
     }
 
     getContent() {
@@ -102,9 +74,9 @@ class Baum{
         $('#scriptCharts').load(url);
 
         if(display){
-            $('#baum').show();
+            $('#charts').show();
         }else{
-            document.getElementById("baum").style.display = "none";
+            document.getElementById("charts").style.display = "none";
         }
     }
 }
