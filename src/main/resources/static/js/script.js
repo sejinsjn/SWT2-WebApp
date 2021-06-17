@@ -2,7 +2,6 @@ class Baum{
 
     constructor(sensors){
         this.sensors = sensors;
-        this.charts = new Array(5);
     }
 
     printout(){
@@ -162,13 +161,14 @@ class Map{
             display = true;
             $('html,body').animate({scrollTop: $("#charts").offset().top}, 'fast');
             $(window).scroll(function(){
-                if($('html,body').scrollTop() === $("#charts").offset().top + 0.5){
+                console.log($('html,body').scrollTop() + " " + $("#charts").offset().top);
+                if($('html,body').scrollTop() === ($("#charts").offset().top + 0.5)){
                     baum.getContent();
                 }
             });
 
             if(highchartsExists == false){
-                $('html,body').animate({scrollTop: $("#charts").offset().top}, 'fast', baum.getContent());
+                $('html,body').animate({scrollTop: $("#charts").offset().top}, 1200, baum.getContent());
             }
         });
     }
