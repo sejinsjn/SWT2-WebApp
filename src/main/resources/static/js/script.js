@@ -31,7 +31,7 @@ class Baum{
     }
 
     createChart(title, sensorname, id){
-        const chart = Highcharts.chart('container' + id, {
+        const chart = Highcharts.stockChart('container' + id, {
             chart: {
                 type: 'line'
             },
@@ -91,12 +91,6 @@ class Baum{
     }
 
     getContent() {
-        if(display){
-            $('#baum').show();
-        }else{
-            document.getElementById("baum").style.display = "none";
-        }
-
         //create url to request fragment
         var activeElement = document.activeElement;
         if(markerClicked === false && activeElement.value != null){
@@ -106,6 +100,12 @@ class Baum{
         }
         //load fragment and replace content
         $('#scriptCharts').load(url);
+
+        if(display){
+            $('#baum').show();
+        }else{
+            document.getElementById("baum").style.display = "none";
+        }
     }
 }
 
@@ -159,16 +159,12 @@ class Map{
             baumTitle = title;
             markerClicked = true;
             display = true;
-            $('html,body').animate({scrollTop: $("#charts").offset().top}, 'fast');
-            $(window).scroll(function(){
-                console.log($('html,body').scrollTop() + " " + $("#charts").offset().top);
-                if($('html,body').scrollTop() === ($("#charts").offset().top + 0.5)){
-                    baum.getContent();
-                }
-            });
-
-            if(highchartsExists == false){
-                $('html,body').animate({scrollTop: $("#charts").offset().top}, 1200, baum.getContent());
+            if(highchartsExists){
+                $('html,body').animate({scrollTop: $("#charts").offset().top}, 'fast');
+                setTimeout(function(){ baum.getContent(); }, 500);
+            }else{
+                baum.getContent();
+                setTimeout(function(){ $('html,body').animate({scrollTop: $("#charts").offset().top}, 'fast'); }, 500);
             }
         });
     }

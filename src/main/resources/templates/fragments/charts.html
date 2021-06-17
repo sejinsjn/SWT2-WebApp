@@ -6,6 +6,7 @@
     <script th:inline="javascript">
         sen = /*[[${sensors}]]*/ null;
         baum = new Baum(sen);
+
         if(baumTitle != null && highchartsExists == false){
             baum.createChartsForBaum(baumTitle);
             highchartsExists = true;
