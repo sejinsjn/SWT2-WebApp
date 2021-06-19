@@ -13,6 +13,7 @@ public class SpringBootApplicationSWT {
 	public static void main(String[] args) throws MqttException {
 
 		System.out.println("== START HITZE-RESILIENZ PLATTFORM ==");
+		SpringApplication.run(SpringBootApplicationSWT.class, args);
 		String topicSWT = "SWT_SMART_CITY_SENSORS";
 
 		MqttClient client=new MqttClient("tcp://compress.seelab.fh-dortmund.de:1883", MqttClient.generateClientId());
@@ -26,7 +27,5 @@ public class SpringBootApplicationSWT {
 
 		client.connect(opt);
 		client.subscribe(topicSWT);
-
-		SpringApplication.run(SpringBootApplicationSWT.class, args);
 	}
 }

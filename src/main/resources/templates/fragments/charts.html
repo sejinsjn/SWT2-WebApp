@@ -4,6 +4,8 @@
 <body>
 <div th:fragment="charts">
     <script th:inline="javascript">
+
+        //Timestamp is in UTC
         sen = /*[[${sensors}]]*/ null;
         baum = new Baum(sen);
 

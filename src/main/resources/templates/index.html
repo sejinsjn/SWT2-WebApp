@@ -8,6 +8,8 @@
     <meta name="author" content="Ich bins">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
             crossorigin="anonymous"></script>
@@ -20,12 +22,20 @@
 </head>
 <body>
 
-<header>
-    <img src="images/favi.jpg" width="300" height="300"/>
-    <p id="title">Hitze-Resilienz Plattform für die Stadt</p>
-</header>
+<section id="landing">
 
-<div id="button"><img width="100" height="100" src="images/arrow.png" alt="+"/></div>
+    <!-- Put back in if needed
+    <header>
+        <img src="images/favi.jpg" class="responsive"/>
+        <p id="title">Hitze-Resilienz Plattform für die Stadt Dortmund</p>
+    </header>
+    -->
+    <!-- and remove this-->
+    <p id="title">Hitze-Resilienz Plattform für die Stadt Dortmund</p>
+    <section id="button">
+        <a><span></span>View Map</a>
+    </section>
+</section>
 
 <div id="mapid"></div>
 <div id="charts">
@@ -44,6 +54,13 @@
     <div id="container"></div>
 </div>
 <div id="scriptCharts"></div>
+
+<footer>
+<ul>
+    <li>Über uns</li>
+    <li>Datenschutzerklärung</li>
+</ul>
+</footer>
 
 <script th:inline="javascript">
         let sen = /*[[${sensors}]]*/ null;
