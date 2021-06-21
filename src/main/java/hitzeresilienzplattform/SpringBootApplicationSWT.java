@@ -16,6 +16,7 @@ public class SpringBootApplicationSWT {
 		SpringApplication.run(SpringBootApplicationSWT.class, args);
 		String topicSWT = "SWT_SMART_CITY_SENSORS";
 
+
 		MqttClient client=new MqttClient("tcp://compress.seelab.fh-dortmund.de:1883", MqttClient.generateClientId());
 
 		MessageHandler handler = new MessageHandler();

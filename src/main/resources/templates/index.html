@@ -62,6 +62,7 @@
 </ul>
 </footer>
 
+<!-- Als Fragment reinladen, da sonst Daten im Quelltext sichtbar sind -->
 <script th:inline="javascript">
         let sen = /*[[${sensors}]]*/ null;
         let baum = new Baum(sen);

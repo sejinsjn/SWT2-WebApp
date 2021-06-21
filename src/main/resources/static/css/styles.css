@@ -148,18 +148,24 @@ header img {
 
 #interval{
     display: flex;
+    height: 90vh;
+    margin-right: 2%;
+    background-color: rgb(74, 74, 79);
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: center;
 }
 
 #interval button{
+    flex: auto;
+    border-radius: 5px;
+    max-height: 50px;
     padding: 1vw;
     margin: 0.3vw;
     align-items: center;
     justify-content: center;
     background-color: #585DAD;
-    color: #EDEDED;
+    color: white;
     border-color: #000000;
     border: none;
 }
