@@ -6,14 +6,14 @@
     <script th:inline="javascript">
 
         //Timestamp is in UTC
-        sen = /*[[${sensors}]]*/ null;
+        sen = /*[[${baeume}]]*/ null;
         baum = new Baum(sen);
 
         if(baumTitle != null && highchartsExists == false){
-            baum.createChart(baumTitle);
+            baum.createChart();
             highchartsExists = true;
         }else{
-            baum.updateChart(baumTitle);
+            baum.updateChart();
         }
     </script>
 </div>

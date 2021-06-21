@@ -30,7 +30,8 @@ class Baum{
         return senb;
     }
 
-    createChart(title){
+    createChart(){
+
         const chart = Highcharts.stockChart('container', {
             chart: { type: 'line' },
             title: { text: title },
@@ -41,23 +42,23 @@ class Baum{
             { labels: { align: 'right', x: -3 }, title: { text: 'Value' }, top: '60%', height: '17%', lineWidth: 2, offset: 0, resize: { enabled: true } },
             { labels: { align: 'right', x: -3 }, title: { text: 'Value' }, top: '80%', height: '17%', lineWidth: 2, offset: 0, resize: { enabled: true } }],
             tooltip: { split: true },
-            series: [ {  type: 'line', name: 'Helligkeit', data: this.getValues(title)[0] },
-            { type: 'line', name: 'Niederschlag', data: this.getValues(title)[1], yAxis: 1 },
-            { type: 'line', name: 'Luftfeuchtigkeit', data: this.getValues(title)[2], yAxis: 2 },
-            { type: 'line', name: 'Bodenfeuchtigkeit', data: this.getValues(title)[3], yAxis: 3 },
-            { type: 'line', name: 'Temperatur', data: this.getValues(title)[4], yAxis: 4 } ]
+            series: [ {  type: 'line', name: 'Helligkeit', data: this.getValues(baumTitle)[0] },
+            { type: 'line', name: 'Niederschlag', data: this.getValues(baumTitle)[1], yAxis: 1 },
+            { type: 'line', name: 'Luftfeuchtigkeit', data: this.getValues(baumTitle)[2], yAxis: 2 },
+            { type: 'line', name: 'Bodenfeuchtigkeit', data: this.getValues(baumTitle)[3], yAxis: 3 },
+            { type: 'line', name: 'Temperatur', data: this.getValues(baumTitle)[4], yAxis: 4 } ]
         });
     }
 
-    updateChart(title){
+    updateChart(){
         if($('#container').highcharts() != null){
             $('#container').highcharts().update({
                 title: { text: title },
-                series: [ {  type: 'line', name: 'Helligkeit', data: this.getValues(title)[0] },
-                { type: 'line', name: 'Niederschlag', data: this.getValues(title)[1], yAxis: 1 },
-                { type: 'line', name: 'Luftfeuchtigkeit', data: this.getValues(title)[2], yAxis: 2 },
-                { type: 'line', name: 'Bodenfeuchtigkeit', data: this.getValues(title)[3], yAxis: 3 },
-                { type: 'line', name: 'Temperatur', data: this.getValues(title)[4], yAxis: 4 } ]
+                series: [ {  type: 'line', name: 'Helligkeit', data: this.getValues(baumTitle)[0] },
+                { type: 'line', name: 'Niederschlag', data: this.getValues(baumTitle)[1], yAxis: 1 },
+                { type: 'line', name: 'Luftfeuchtigkeit', data: this.getValues(baumTitle)[2], yAxis: 2 },
+                { type: 'line', name: 'Bodenfeuchtigkeit', data: this.getValues(baumTitle)[3], yAxis: 3 },
+                { type: 'line', name: 'Temperatur', data: this.getValues(baumTitle)[4], yAxis: 4 } ]
             });
         }
     }
@@ -70,14 +71,35 @@ class Baum{
         }else{
             var url = '/request?interval=All';
         }
+
+
+        let senb = this.sensors.filter((sensor) => sensor.title === baumTitle);
         //load fragment and replace content
         $('#scriptCharts').load(url);
+        setTimeout(function(){
+            if(display){
+                document.getElementById("name").innerHTML = "Baum: " + title;
 
-        if(display){
-            $('#charts').show();
-        }else{
-            document.getElementById("charts").style.display = "none";
-        }
+                let date = new Date(senb[senb.length-1].sensors[4].timestamp);
+                let months_arr = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+                let day = date.getDate(), month = months_arr[date.getMonth()], year = date.getFullYear(), hours = date.getHours(), minutes = "0" + date.getMinutes(), seconds = "0" + date.getSeconds();
+                let formattedTime = day+'-'+month+'-'+year+' '+hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+                document.getElementById("timestamp").innerHTML = "Letzte Aktualisierung: " + formattedTime;
+
+                document.getElementById("status").innerHTML = "Sensorstatus: " + senb[senb.length-1].metadaten.sensorstatus;
+                $('#charts').show();
+            }else{
+                document.getElementById("charts").style.display = "none";
+            }
+        }, 500);
+    }
+
+    getGeoKo(){
+        let senb000 = this.sensors.filter((sensor) => sensor.title === 'Baum-000');
+        let senb001 = this.sensors.filter((sensor) => sensor.title === 'Baum-001');
+        let senb002 = this.sensors.filter((sensor) => sensor.title === 'Baum-002');
+
+       return [senb000[senb000.length - 1].metadaten.geokoordinaten, senb001[senb001.length - 1].metadaten.geokoordinaten, senb002[senb002.length - 1].metadaten.geokoordinaten];
     }
 }
 
@@ -102,9 +124,9 @@ class Map{
             accessToken: 'pk.eyJ1Ijoic2VqaW5zam4iLCJhIjoiY2twNnRrbnYwMTg1NjJwcjJ2cXc1Z2phciJ9.4VY4Kdvdx7Kdy5OAWOM4cg'
         }).addTo(mymap);
 
-        let markerb000 = L.marker(geokoMb000, {icon: treeIcon}).addTo(mymap).bindPopup('Baum 000');
-        let markerb001 = L.marker(geokoMb001, {icon: treeIcon}).addTo(mymap).bindPopup('Baum 001');
-        let markerb002 = L.marker(geokoMb002, {icon: treeIcon}).addTo(mymap).bindPopup('Baum 002');
+        let markerb000 = L.marker(geokoMb000, {icon: treeIcon}).addTo(mymap).bindPopup('Stadtgarten');
+        let markerb001 = L.marker(geokoMb001, {icon: treeIcon}).addTo(mymap).bindPopup('Grünanlage "Ostwall"');
+        let markerb002 = L.marker(geokoMb002, {icon: treeIcon}).addTo(mymap).bindPopup('Park der Partnerstädte');
 
         marker.push(markerb000);
         marker.push(markerb001);
@@ -126,9 +148,10 @@ class Map{
         return marker;
     }
 
-    setOnClickForMarker(baum, title, marker){
+    setOnClickForMarker(baum, btitle, title, marker){
         marker.on('click',() => {
-            baumTitle = title;
+            baumTitle = btitle;
+            title = title;
             markerClicked = true;
             display = true;
             if(highchartsExists){
@@ -142,8 +165,8 @@ class Map{
     }
 
     setOnClickForAllMarker(baum, marker){
-        this.setOnClickForMarker(baum, 'Baum-000', marker[0]);
-        this.setOnClickForMarker(baum, 'Baum-001', marker[1]);
-        this.setOnClickForMarker(baum, 'Baum-002', marker[2]);
+        this.setOnClickForMarker(baum, 'Baum-000', 'Stadtgarten', marker[0]);
+        this.setOnClickForMarker(baum, 'Baum-001', 'Grünanlage "Ostwall"', marker[1]);
+        this.setOnClickForMarker(baum, 'Baum-002', 'Park der Partnerstädte', marker[2]);
     }
 }

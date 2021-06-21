@@ -4,7 +4,7 @@ import net.minidev.json.annotate.JsonIgnore;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "Sensor")
+@Document(collection = "Baum")
 public class MetaDaten {
 
     @Id

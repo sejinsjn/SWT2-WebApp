@@ -40,12 +40,16 @@
 <div id="mapid"></div>
 <div id="charts">
     <div id="baum">
+        <div id="description"> <p id="name"></p> </div>
+        <div id="lastupdated"> <p id="timestamp"></p> </div>
+        <div id="sensorstatus"> <p id="status"></p> </div>
         <div>
             <form id="interval">
-                <button name="intervalVal"value="1" type="submit">1</button>
-                <button name="intervalVal"value="7" type="submit">7</button>
-                <button name="intervalVal"value="30" type="submit">30</button>
-                <button name="intervalVal"value="60" type="submit">60</button>
+                <p>Interval-Auswahl</p>
+                <button name="intervalVal" value="1" type="submit">1</button>
+                <button name="intervalVal" value="7" type="submit">7</button>
+                <button name="intervalVal" value="30" type="submit">30</button>
+                <button name="intervalVal" value="60" type="submit">60</button>
                 <button name="intervalVal" value="90" type="submit">90</button>
                 <button name="intervalVal" value="All" type="submit">All</button>
             </form>
@@ -64,16 +68,12 @@
 
 <!-- Als Fragment reinladen, da sonst Daten im Quelltext sichtbar sind -->
 <script th:inline="javascript">
-        let sen = /*[[${sensors}]]*/ null;
-        let baum = new Baum(sen);
-        let map = new Map();
+        let baeume = /*[[${baeume}]]*/ null;
+        let baum = new Baum(baeume), map = new Map();
 
-        let baumTitle = null;
-        let markerClicked = false;
-        let display = false;
-        let highchartsExists = false;
+        let baumTitle = null, title = null, markerClicked = false, display = false, highchartsExists = false, geoko = baum.getGeoKo();
 
-        let marker = map.createMap(sen[sen.length-3].metadaten.geokoordinaten, sen[sen.length-2].metadaten.geokoordinaten, sen[sen.length-1].metadaten.geokoordinaten);
+        let marker = map.createMap(geoko[0], geoko[1], geoko[2]);
         map.setOnClickForAllMarker(baum, marker);
 
         $("#button").click( (e) => { $('html,body').animate({scrollTop: $("#mapid").offset().top},'fast');});

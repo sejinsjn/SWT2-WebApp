@@ -1,15 +1,14 @@
 package hitzeresilienzplattform.repositories;
 
-import hitzeresilienzplattform.entities.Sensor;
+import hitzeresilienzplattform.entities.Baum;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Repository
-public interface SensorRepository extends MongoRepository<Sensor, Integer> {
+public interface SensorRepository extends MongoRepository<Baum, Integer> {
 
-    public List<Sensor> findBySensorsTimestampGreaterThan(long timestamp);
+    public List<Baum> findBySensorsTimestampGreaterThan(long timestamp);
 }

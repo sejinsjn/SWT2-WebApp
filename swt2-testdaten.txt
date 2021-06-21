@@ -1,7 +1,7 @@
 [
 {
 "title": "Baum-000",
-"sensors": [
+"baums": [
 {
 "name": "niederschlag",
 "id": "b4724410-29cf-46e6-8f7d-07508c7c025a"
@@ -26,7 +26,7 @@
 },
 {
 "title": "Baum-001",
-"sensors": [{
+"baums": [{
 "name": "niederschlag",
 "id": "bda4274f-af4e-4485-b58b-b7f036296d64"
 },
@@ -50,7 +50,7 @@
 },
 {
 "title": "Baum-002",
-"sensors": [
+"baums": [
 {
 "name": "niederschlag",
 "id": "556931c7-cf87-440a-af3f-58a676f70afb"

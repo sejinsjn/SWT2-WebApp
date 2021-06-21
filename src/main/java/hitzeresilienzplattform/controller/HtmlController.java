@@ -1,6 +1,6 @@
 package hitzeresilienzplattform.controller;
 
-import hitzeresilienzplattform.entities.Sensor;
+import hitzeresilienzplattform.entities.Baum;
 import hitzeresilienzplattform.repositories.SensorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,20 +20,20 @@ public class HtmlController {
 
     @GetMapping("/")
     public String displayIndex(Model model) {
-        List<Sensor> sensors = sensorRepository.findAll();
-        if (sensors != null) model.addAttribute("sensors", sensors);
+        List<Baum> baeume = sensorRepository.findAll();
+        if (baeume != null) model.addAttribute("baeume", baeume);
         return "index";
     }
 
     @RequestMapping(value = "/request", method = RequestMethod.GET)
     public String getInterval(@RequestParam String interval, Model model){
-        List<Sensor> sensors = new LinkedList();
+        List<Baum> baeume = new LinkedList();
         if(interval.equals("All") || interval.equals(null)){
-            sensors = sensorRepository.findAll();
+            baeume = sensorRepository.findAll();
         }else{
-            sensors = sensorRepository.findBySensorsTimestampGreaterThan(System.currentTimeMillis()-(86400000*Long.parseLong(interval)));
+            baeume = sensorRepository.findBySensorsTimestampGreaterThan(System.currentTimeMillis()-(86400000*Long.parseLong(interval)));
         }
-        if (sensors != null) model.addAttribute("sensors", sensors);
+        if (baeume != null) model.addAttribute("baeume", baeume);
         return "/fragments/charts :: charts";
     }
 
