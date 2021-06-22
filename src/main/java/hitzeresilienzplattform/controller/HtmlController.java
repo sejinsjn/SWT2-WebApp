@@ -1,14 +1,11 @@
 package hitzeresilienzplattform.controller;
 
+import hitzeresilienzplattform.service.ISensorService;
 import hitzeresilienzplattform.entities.Baum;
-import hitzeresilienzplattform.repositories.SensorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -16,11 +13,11 @@ import java.util.List;
 @Controller
 public class HtmlController {
 
-    SensorRepository sensorRepository;
+    ISensorService sensorService;
 
     @GetMapping("/")
     public String displayIndex(Model model) {
-        List<Baum> baeume = sensorRepository.findAll();
+        List<Baum> baeume = sensorService.getAllSensor();
         if (baeume != null) model.addAttribute("baeume", baeume);
         return "index";
     }
@@ -29,14 +26,15 @@ public class HtmlController {
     public String getInterval(@RequestParam String interval, Model model){
         List<Baum> baeume = new LinkedList();
         if(interval.equals("All") || interval.equals(null)){
-            baeume = sensorRepository.findAll();
+            baeume = sensorService.getAllSensor();
         }else{
-            baeume = sensorRepository.findBySensorsTimestampGreaterThan(System.currentTimeMillis()-(86400000*Long.parseLong(interval)));
+            baeume = sensorService.findBySensorsTimestampGreaterThan(System.currentTimeMillis()-(86400000*Long.parseLong(interval)));
         }
         if (baeume != null) model.addAttribute("baeume", baeume);
         return "/fragments/charts :: charts";
     }
 
+
     @Autowired
-    public void setSensorRepository(SensorRepository sensorRepository){ this.sensorRepository = sensorRepository; }
+    public void setSensorService(ISensorService sensorService){ this.sensorService = sensorService; }
 }

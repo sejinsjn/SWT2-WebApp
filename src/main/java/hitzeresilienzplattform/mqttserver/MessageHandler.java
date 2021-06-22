@@ -2,28 +2,47 @@ package hitzeresilienzplattform.mqttserver;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import hitzeresilienzplattform.service.ISensorService;
 import hitzeresilienzplattform.entities.Baum;
 import hitzeresilienzplattform.entities.MetaDaten;
 import hitzeresilienzplattform.entities.SensorDaten;
 import hitzeresilienzplattform.entities.Sensor;
 
-import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
-import org.eclipse.paho.client.mqttv3.MqttCallback;
-import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.eclipse.paho.client.mqttv3.*;
 
-import org.springframework.web.client.RestTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class MessageHandler implements MqttCallback {
+@Component
+public class MessageHandler implements MqttCallback{
 
     private String json;
     private int counter = 0;
     private Baum b000, b001, b002;
 
+    private ISensorService sensorService;
+
     public MessageHandler() {
-        initBaume();
+        try {
+            String topicSWT = "SWT_SMART_CITY_SENSORS";
+            MqttClient client = new MqttClient("tcp://compress.seelab.fh-dortmund.de:1883", MqttClient.generateClientId());
+            client.setCallback( this );
+
+            MqttConnectOptions opt = new MqttConnectOptions();
+            opt.setUserName("swt2");
+            opt.setPassword("sose2021".toCharArray());
+
+            client.connect(opt);
+            client.subscribe(topicSWT);
+        }
+        catch (MqttException ex)
+        {
+            System.err.println(ex);
+        }
+      initBaume();
     }
 
     public void connectionLost(Throwable throwable) {
@@ -62,12 +81,10 @@ public class MessageHandler implements MqttCallback {
         }
 
         if (counter == 14) {
-            final String uri = "http://localhost:8080/create";
-            RestTemplate restTemplate = new RestTemplate();
 
-            restTemplate.postForEntity(uri, b000, Baum.class, Sensor.class, MetaDaten.class);
-            restTemplate.postForEntity(uri, b001, Baum.class, Sensor.class, MetaDaten.class);
-            restTemplate.postForEntity(uri, b002, Baum.class, Sensor.class, MetaDaten.class);
+            sensorService.addSensor(b000);
+            sensorService.addSensor(b001);
+            sensorService.addSensor(b002);
 
             System.out.println(b000 + "\n" + b001 + "\n" + b002);
 
@@ -143,4 +160,8 @@ public class MessageHandler implements MqttCallback {
         double[] b002GK = {51.514774, 7.454719};
         this.b002 = init("Baum-002", b002ID, b002GK);
     }
+
+
+    @Autowired
+    public void setUserService(ISensorService sensorService){ this.sensorService = sensorService; }
 }
