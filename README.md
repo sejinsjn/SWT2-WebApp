@@ -15,6 +15,21 @@ Anzeigen und persistieren von Sensordaten aus einem MQTT-Broker
 - Datenbank: MongoDB
 - Frameworks und Libarys: Java Spring Boot, Leaflet mit OpenStreetMap und Mapbox,
     HighCharts.js 
+    
+## Aktueller Stand
+
+<p align="center">
+    <img src="https://github.com/sejinsjn/SWT2-WebApp/blob/master/src/main/resources/static/images/page0.png" height="300px" width="300px">
+</p>
+
+<p align="center">
+    <img src="https://github.com/sejinsjn/SWT2-WebApp/blob/master/src/main/resources/static/images/page1.png" height="300px" width="300px">
+</p>
+
+<p align="center">
+    <img src="https://github.com/sejinsjn/SWT2-WebApp/blob/master/src/main/resources/static/images/page2.png" height="300px" width="300px">
+</p>
+
 
 ## Contributors ✨
 
