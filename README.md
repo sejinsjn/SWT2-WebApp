@@ -19,15 +19,15 @@ Anzeigen und persistieren von Sensordaten aus einem MQTT-Broker
 ## Aktueller Stand
 
 <p align="center">
-    <img src="https://github.com/sejinsjn/SWT2-WebApp/blob/master/src/main/resources/static/images/page0.png" height="300px" width="300px">
+    <img src="https://github.com/sejinsjn/SWT2-WebApp/blob/master/src/main/resources/static/images/page0.png">
 </p>
 
 <p align="center">
-    <img src="https://github.com/sejinsjn/SWT2-WebApp/blob/master/src/main/resources/static/images/page1.png" height="300px" width="300px">
+    <img src="https://github.com/sejinsjn/SWT2-WebApp/blob/master/src/main/resources/static/images/page1.png">
 </p>
 
 <p align="center">
-    <img src="https://github.com/sejinsjn/SWT2-WebApp/blob/master/src/main/resources/static/images/page2.png" height="300px" width="300px">
+    <img src="https://github.com/sejinsjn/SWT2-WebApp/blob/master/src/main/resources/static/images/paage2.png">
 </p>
 
 
