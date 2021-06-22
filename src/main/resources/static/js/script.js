@@ -65,11 +65,12 @@ class Baum{
 
     getContent() {
         //create url to request fragment
-        var activeElement = document.activeElement;
+        let activeElement = document.activeElement;
+        let url = "";
         if(markerClicked === false && activeElement.value != null){
-            var url = '/request?interval=' + activeElement.value;
+            url = '/request?interval=' + activeElement.value;
         }else{
-            var url = '/request?interval=All';
+            url = '/request?interval=All';
         }
 
 
