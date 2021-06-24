@@ -24,9 +24,7 @@ public class SensorServiceImpl implements ISensorService {
     }
 
     @Override
-    public List<Baum> findBySensorsTimestampGreaterThan(long timestamp) {
-        return sensorRepository.findBySensorsTimestampGreaterThan(timestamp);
-    }
+    public List<Baum> findBySensorsTimestampGreaterThan(long timestamp) { return sensorRepository.findBySensorsTimestampGreaterThan(timestamp); }
 
     @Autowired
     public void setSensorRepository(SensorRepository sensorRepository)

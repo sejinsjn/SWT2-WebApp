@@ -71,7 +71,7 @@
         let baeume = /*[[${baeume}]]*/ null;
         let baum = new Baum(baeume), map = new Map();
 
-        let baumTitle = null, title = null, markerClicked = false, display = false, highchartsExists = false, geoko = baum.getGeoKo();
+        let baumTitle = null, bTitle = null, markerClicked = false, display = false, highchartsExists = false, geoko = baum.getGeoKo();
 
         let marker = map.createMap(geoko[0], geoko[1], geoko[2]);
         map.setOnClickForAllMarker(baum, marker);

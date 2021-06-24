@@ -81,7 +81,6 @@ public class MessageHandler implements MqttCallback{
         }
 
         if (counter == 14) {
-
             sensorService.addSensor(b000);
             sensorService.addSensor(b001);
             sensorService.addSensor(b002);

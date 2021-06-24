@@ -79,7 +79,7 @@ class Baum{
         $('#scriptCharts').load(url);
         setTimeout(function(){
             if(display){
-                document.getElementById("name").innerHTML = "Baum: " + title;
+                document.getElementById("name").innerHTML = "Baum: " + bTitle;
 
                 let date = new Date(senb[senb.length-1].sensors[4].timestamp);
                 let months_arr = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -152,7 +152,7 @@ class Map{
     setOnClickForMarker(baum, btitle, title, marker){
         marker.on('click',() => {
             baumTitle = btitle;
-            title = title;
+            bTitle = title;
             markerClicked = true;
             display = true;
             if(highchartsExists){
