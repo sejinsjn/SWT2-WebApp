@@ -34,7 +34,7 @@ class Baum{
 
         const chart = Highcharts.stockChart('container', {
             chart: { type: 'line' },
-            title: { text: title },
+            title: { text: bTitle },
             xAxis: { title: { text: 'Date' }, type: 'datetime', labels: { format: '{value:%e-%b-%y}' } },
             yAxis: [{ labels: { align: 'right', x: -3 }, title: { text: 'Value' }, height: '17%', lineWidth: 2, offset: 0, resize: { enabled: true } },
             { labels: { align: 'right', x: 0 }, title: { text: 'Value' }, top: '20%', height: '17%', lineWidth: 2, offset: 0, resize: { enabled: true } },
@@ -53,7 +53,7 @@ class Baum{
     updateChart(){
         if($('#container').highcharts() != null){
             $('#container').highcharts().update({
-                title: { text: title },
+                title: { text: bTitle },
                 series: [ {  type: 'line', name: 'Helligkeit', data: this.getValues(baumTitle)[0] },
                 { type: 'line', name: 'Niederschlag', data: this.getValues(baumTitle)[1], yAxis: 1 },
                 { type: 'line', name: 'Luftfeuchtigkeit', data: this.getValues(baumTitle)[2], yAxis: 2 },

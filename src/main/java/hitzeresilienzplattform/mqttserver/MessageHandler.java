@@ -55,7 +55,6 @@ public class MessageHandler implements MqttCallback{
         SensorDaten daten = new ObjectMapper().readValue(this.json, SensorDaten.class);
         List<Sensor> b000S = b000.getSensors(), b001S = b001.getSensors(), b002S = b002.getSensors();
 
-
         if(idExists(b000S, daten.getSensorId()) != -1){
             int id = idExists(b000S, daten.getSensorId());
             b000S.get(id).setTimestamp(daten.getTimestamp());

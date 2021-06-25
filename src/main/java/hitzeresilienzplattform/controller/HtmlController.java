@@ -13,7 +13,7 @@ import java.util.List;
 @Controller
 public class HtmlController {
 
-    ISensorService sensorService;
+    private ISensorService sensorService;
 
     @GetMapping("/")
     public String displayIndex(Model model) {
